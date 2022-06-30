@@ -44,20 +44,3 @@ jobs:
 
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
-
-      # Build and push Docker image
-      # https://github.com/marketplace/actions/docker-build-push-action
-      # echo $PAT | docker login ghcr.io --username phanatic --password-stdin
-      # docker tag app ghcr.io/phanatic/app:1.0.0
-      # docker push ghcr.io/phanatic/app:1.0.0
-
-     - uses: mr-smithers-excellent/docker-build-push@v5
-       name: Build & push Docker image
-       with:
-        image: repo/image
-        tags: v1, latest
-        registry: ghcr.io
-        githubOrg: org
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
